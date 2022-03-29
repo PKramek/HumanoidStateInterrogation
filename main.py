@@ -19,7 +19,7 @@ class ParametrizableResetHumanoid(HumanoidEnv):
 
 
 if __name__ == '__main__':
-    new_env_name = 'ParametrizableResetHumanoid'
+    new_env_name = 'ParametrizableResetHumanoid-v2'
 
     gym.envs.register(
         id=new_env_name,
