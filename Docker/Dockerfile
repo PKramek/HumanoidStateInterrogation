@@ -4,7 +4,7 @@ FROM tensorflow/tensorflow:2.1.0-gpu-py3
 RUN apt update
 RUN apt-get update
 
-RUN apt-get install -y git wget zip libosmesa6-dev libgl1-mesa-glx libglfw3  libffi-dev patchelf xvfb python-opengl
+RUN apt-get install -y git wget zip libosmesa6-dev libgl1-mesa-glx libglfw3  libffi-dev patchelf xvfb
 
 #Download ACERAC
 RUN git clone https://github.com/PKramek/HumanoidStateInterrogation.git -b feature/humanoid-wrapper
@@ -50,3 +50,5 @@ RUN pip install cffi==1.15.0 fasteners==0.16.3 Cython==0.29.24 glfw==2.3.0 image
 RUN pip install mujoco-py==2.0.2.9 --no-cache-dir --no-binary :all: --no-build-isolation
 
 RUN pip install jupyter
+
+CMD xvfb-run -s "-screen 0 1400x900x24" jupyter notebook --allow-root --ip 0.0.0.0 --NotebookApp.token='token'

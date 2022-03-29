@@ -1,3 +1,4 @@
 gym==0.17.2
 pybullet==2.6.6
 numpy==1.17.3
+matplotlib
