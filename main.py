@@ -38,6 +38,10 @@ if __name__ == '__main__':
 
     env = gym.make(new_env_name)
     observation = env.reset()
+
+    first_frame = env.render()
+    print(f"Type of first frame: {type(first_frame)}")
+
     for _ in range(1000):
         env.render()
         action = env.action_space.sample()  # your agent here (this takes random actions)
@@ -46,3 +50,5 @@ if __name__ == '__main__':
         if done:
             observation = env.reset()
     env.close()
+
+
