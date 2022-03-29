@@ -8,6 +8,9 @@ from gym.envs.mujoco.humanoid import HumanoidEnv
 # https://github.com/openai/gym/wiki/Humanoid-V1
 from src.init_qpos_modifer import InitQposModifierFactory
 
+FORMAT = '%(asctime)s: %(message)s'
+logging.basicConfig(format=FORMAT)
+
 
 class ParametrizableResetHumanoid(HumanoidEnv):
     def __init__(self):
