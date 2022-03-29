@@ -16,9 +16,9 @@ RUN apt update
 RUN apt install -y python3.7
 RUN apt install -y libpython3.7-dev
 RUN apt install -y python3.7-dev
+RUN apt install -y python3-wheel
 
 # Install mujoco
-
 RUN ln -s /usr/lib/x86_64-linux-gnu/libGL.so.1 /usr/lib/x86_64-linux-gnu/libGL.so
 RUN mkdir root/.mujoco
 WORKDIR root/.mujoco
@@ -28,7 +28,6 @@ RUN unzip mujoco.zip -d /root/.mujoco
 RUN mv /root/.mujoco/mujoco200_linux /root/.mujoco/mujoco200
 RUN rm mujoco.zip
 
-# If you want to create your own docker image you have to put your mjkey inside Docker directory
 COPY ./mjkey.txt /root/.mujoco/
 
 WORKDIR /
@@ -41,12 +40,13 @@ ENV LD_LIBRARY_PATH /usr/local/nvidia/lib64:${LD_LIBRARY_PATH}
 RUN apt-get install python3.7-venv
 
 # venv trick https://pythonspeed.com/articles/activate-virtualenv-dockerfile/
-ENV VIRTUAL_ENV=humanoid-venv
-RUN python3.7 -m venv humanoid-venv
+ENV VIRTUAL_ENV=acerac-venv
+RUN python3.7 -m venv acerac-venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
+
 RUN pip install -r HumanoidStateInterrogation/requirements.txt
-RUN pip install cffi==1.15.0 fasteners==0.16.3 Cython==0.29.24 glfw==2.3.0 imageio==2.10.1
+RUN pip install cffi==1.15.0 fasteners==0.16.3 Cython==0.29.24 glfw==2.3.0 imageio==2.10.1 wheel
 RUN pip install mujoco-py==2.0.2.9 --no-cache-dir --no-binary :all: --no-build-isolation
 
 
