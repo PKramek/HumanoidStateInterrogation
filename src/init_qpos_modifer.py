@@ -30,7 +30,7 @@ class AbdomenXInitQposModifier(InitQposModifier):
 
 
 class InitQposModifierFactory:
-    _CLASS_MAPPING = {
+    _class_mapping = {
         "abdomen_z": AbdomenZInitQposModifier,
         "abdomen_y": AbdomenYInitQposModifier,
         "abdomen_x": AbdomenXInitQposModifier,
@@ -38,18 +38,28 @@ class InitQposModifierFactory:
 
     @staticmethod
     def get(name: str) -> InitQposModifier:
-        modifier_class = InitQposModifierFactory._CLASS_MAPPING.get(name, None)
+        modifier_class = InitQposModifierFactory._class_mapping.get(name, None)
         if modifier_class is None:
             raise ValueError(
-                f"Unknown InitQposModifier: {name}, available options are: {InitQposModifierFactory._CLASS_MAPPING.keys()}")
+                f"Unknown InitQposModifier: {name}, available options are: {InitQposModifierFactory._class_mapping.keys()}")
 
         return modifier_class()
 
     @staticmethod
+    def register(name: str, modified_class: InitQposModifier):
+        assert issubclass(modified_class, InitQposModifier), "Newly added class must be a subclass of InitQposModifier"
+        assert isinstance(name, str), "Name of new class must be a string"
+        assert InitQposModifierFactory._class_mapping.get(name, None) is None, "Can't register class because name is already taken"
+
+        InitQposModifierFactory._class_mapping[name] = modified_class
+
+    @staticmethod
     def get_default() -> InitQposModifier:
         default = os.environ.get("DEFAULT_InitQposModifier")
-        if default not in InitQposModifierFactory._CLASS_MAPPING.keys():
+        assert default is not None, "Environmental variable DEFAULT_InitQposModifier not set"
+
+        if default not in InitQposModifierFactory._class_mapping.keys():
             raise ValueError(
-                f"Unknown InitQposModifier: {default}, available options are: {InitQposModifierFactory._CLASS_MAPPING.keys()}")
+                f"Unknown InitQposModifier: {default}, available options are: {InitQposModifierFactory._class_mapping.keys()}")
 
         return InitQposModifierFactory.get(default)
