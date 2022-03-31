@@ -1,4 +1,3 @@
-To run notebook use command:
-xvfb-run -s "-screen 0 1400x900x24" jupyter notebook --allow-root --ip 0.0.0.0 --NotebookApp.token='token'
+To run jupyter just use command < docker-compose up > from projects directory
 
-When asked for token by jupyter notebook server pass "token"
+When asked about jupyter token just pass in  < token >
