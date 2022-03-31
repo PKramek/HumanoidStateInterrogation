@@ -7,7 +7,7 @@ RUN apt-get update
 RUN apt-get install -y git wget zip libosmesa6-dev libgl1-mesa-glx libglfw3  libffi-dev patchelf xvfb
 
 #Download ACERAC
-RUN git clone https://github.com/PKramek/HumanoidStateInterrogation.git -b feature/humanoid-wrapper
+RUN git clone https://github.com/PKramek/HumanoidStateInterrogation.git
 
 # Install Python 3.7
 RUN apt install -y software-properties-common
