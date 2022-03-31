@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.idea/
+/Docker/mjkey.txt
+/jupyter/.Trash-0/
