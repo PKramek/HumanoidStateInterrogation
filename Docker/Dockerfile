@@ -51,4 +51,7 @@ RUN pip install mujoco-py==2.0.2.9 --no-cache-dir --no-binary :all: --no-build-i
 
 RUN pip install jupyter
 
-CMD xvfb-run -s "-screen 0 1400x900x24" jupyter notebook --allow-root --ip 0.0.0.0 --NotebookApp.token='token'
+ADD run.sh /run.sh
+RUN chmod a+x /run.sh
+
+CMD /run.sh
