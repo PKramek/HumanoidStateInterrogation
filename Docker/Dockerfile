@@ -51,6 +51,7 @@ RUN pip install mujoco-py==2.0.2.9 --no-cache-dir --no-binary :all: --no-build-i
 
 RUN pip install jupyter
 
+# xvfb-run must be run at startup not as CMD
 ADD run.sh /run.sh
 RUN chmod a+x /run.sh
 
