@@ -1,7 +1,7 @@
 version: "3"
 services:
   jupyter:
-    image: pkramek/humanoid-state
+    image: pkramek/humanoid-state:testing
     ports:
       - 8888:8888
     volumes:
